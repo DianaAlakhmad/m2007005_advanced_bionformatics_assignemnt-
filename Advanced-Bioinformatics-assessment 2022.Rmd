@@ -1,0 +1,95 @@
+---
+title: "Advanced-bioinformatics Assessment 2021"
+author: "M2007005"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+---
+```{r Task 3.1}
+#Task 3.1
+x <- c(5:55); sum (x)
+#Assign the variable using '<-'
+# I created vector called 'x' where I will put my values in. The sum() function will calculate the sum of the integers between the values 5 and 55 that I have indicated in my vector. 
+# The : operator is used to create a series of numbers in a sequence (5:55). 
+
+```
+```{r Task 3.2}
+#Task 3.2
+# With the 'sumfun' function, I can create my own function to calculate the sum of the integers between any two number, here, I want the sum from 5 and n,  with n being any number. In this case, we want n to be 10, 20 , 100. After stating the function in the first line (sumfun <- function(n) {sum(5:n)} ), I can then just use the 'sumfun' command and provide one input parameter called n to calculate the sum of the integers and repeat the same for the other numbers eg. sumfun(n). 
+sumfun <- function(n) {sum(5:n)} 
+sumfun(10)
+sumfun(20)
+sumfun(100) 
+```
+```{r Task 3.3}
+#Task 3.3
+#Fibonacci is a sequence series where each number is the sum of the 2 that precede it. I can use the function(n) command to indicate that the function used here is Fibonacci. Then, I can use the number(n) command to specify my function has numerical value. After, I will specify the number of entries that I want to be calculated and printed out of the Fibonacci series, in this case it is 12. 
+Fibonacci <- function(n) 
+Fibonacci <- numeric(n)
+# Then, I can specify what the first and second numbers of Fibonacci series are, in this case the first and second numbers are 1. 
+Fibonacci <- numeric(12) 
+Fibonacci[1] <- 1
+Fibonacci[2] <- 1 
+#Now we need to use the write a loop so that we do not repeat our selves by stating every time what the sequence is, the loop in a code chunk will stop and go back to the first instruction I give it after the loop block. . 
+#In this case, we can use the loop to do many printouts of the numbers within Fibonacci series in this case ( we want the series between 3 and 12). I used the 'for' loop to iterate over the fibonacci sequence.   
+for(i in 3:12) Fibonacci[i] <- Fibonacci[i-2] + Fibonacci[i-1] 
+#to print the output 
+print(Fibonacci) 
+```
+```{r Task 3.4}
+#Task 3.4
+#To load the ggplot can use the 'library' command
+library(ggplot2) 
+#To initiate a new plot, will use the 'ggplot' command. To create a data frame containing my data (the 'mtcars' data in this case) will use the 'data=' function.
+#Aesthetics (aes), is used here to indicate what variable i want to use in my plot, in this case it is the (x= as.factor(gear), y= mpg).
+# The '+' operator is used here to combine the different components eg. title, type of plot. 
+ggplot(data = mtcars, aes(x= as.factor(gear), y= mpg)) + geom_boxplot(aes(fill= as.factor(gear) )) + ggtitle(" Figure 1: A Box plot of the mgs vs. No. of gears ")
+# the ggtitle command was used here to specify the title of my box plot # the geom_point()command was used here to create a simple point plot
+
+```
+```{r Task 3.5}
+#Task 3.5 
+#To create simple linear model first , assign the variable x and y, i used the '<-' function. 
+## From the dataset cars: To create different variable(x,y,z) for distance (=x), speed (=y)and linear model(=z)  
+#To fit the model, use the 'lm' function 
+x <- cars$dist 
+y <- cars$speed
+z <- lm(formula = "x ~ y", data = cars)
+summary(z) 
+#The summary command here is used here to get more details of the parameter values of my model such as the standard errors.
+```
+```{r Task 3.6}
+#Task 3.6 
+#the data set 'cars' is my input and the column to extract is the speed and distance.
+input <- cars[,c('speed','dist')]
+library(ggplot2)
+#To visualize the best fit and confidence intervals of my fitted model, i used the ggplot command. 
+#First it's assigning the ggplot function to the variable ggplot_a and ggplot_b
+ggplot_a <- ggplot(data = cars, aes(x= speed, y=dist)) + geom_point() + geom_smooth(method = "lm",formula = "y ~ x")  
+ggplot_b <- ggplot_a + ggtitle ("Figure 2: Linear relationship of breaking distance(dist) vs. speed")+ xlab("speed(mph)")+ ylab("dist(miles)") 
+ggplot_b
+```
+```{r Task 3.7}
+#Task 3.7
+#the variable to braking distance is distance_miles.
+distance_miles <- cars$dist*0.000189 
+#Now convert distance to miles 
+#the variable for speed is speed_ft
+speed_ft <- cars$speed^2 
+#the breaking distance is proportional to the square of the speed
+lm <- lm(formula = "distance_miles ~ speed_ft", data = cars) 
+#lm allows to calculate the linear regression between distance and speed 
+summary(lm) 
+
+lm$coefficients 
+#Because the reaction time is in seconds, we multiply it by 3600 as one hour contains 3600 seconds. 
+reaction_time <- 2.437508e-05*3600 
+reaction_time 
+#we need the gg plot to plot the linear fit, decided to plot the x axis as speed and y axis as the distance. 
+library(ggplot2)
+c <- ggplot(data = cars, aes(x = speed_ft, y = distance_miles)) + geom_point() + geom_smooth(method = "lm",formula = "y ~ x", color="Pink") 
+plot <- c+ggtitle("Figure 3:Linear regression of breaking distance/miles and speed/ft")
+plot 
+#the ggtitle allows assigning a title to my ggplot. 
+`
