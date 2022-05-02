@@ -1,4 +1,4 @@
-e#!/bin/bash #
+#!/bin/bash #
 
 #Step1: Data organization
 # First, need to be in the home directory to create a storage space for my planned work
