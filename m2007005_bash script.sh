@@ -23,7 +23,7 @@ mkdir trimmed_fastq
 # will download the data using the wget command which allows non-interactive downloads for free utility from the web.
 wget https://s3-eu-west-1.amazonaws.com/workshopdata2017/NGS0001.R1.fastq.qz
 wget https://s3-eu-west-1.amazonaws.com/workshopdata2017/NGS0001.R2.fastq.qz
-#now download the annotation file needed for the alignment step
+#now download the annotation file needed for the annotating vairant step
 wget https://s3-eu-west-1.amazonaws.com/workshopdata2017/annotation.bed
 
 # To move all the raw untrimmed_fastq files and bed file from the data directory into the untrimmed_fastq directory
